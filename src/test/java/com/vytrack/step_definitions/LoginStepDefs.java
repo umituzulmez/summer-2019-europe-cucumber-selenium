@@ -30,7 +30,7 @@ public class LoginStepDefs {
 
     @Then("the user should be able to login")
     public void the_user_should_be_able_to_login() {
-        BrowserUtils.waitForPageToLoad(5);
+        BrowserUtils.waitForPageToLoad(10);
         String actualTitle = Driver.get().getTitle();
         Assert.assertEquals("Dashboard",actualTitle);
     }
@@ -62,6 +62,31 @@ public class LoginStepDefs {
         System.out.println("expectedTitle = " + expectedTitle);
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
     }
+
+    @Given("the user logged in as a {string}")
+    public void the_user_logged_in_as_a_(String user) {
+        String url = ConfigurationReader.get("url");
+        Driver.get().get(url);
+        String username = null;
+        String password = null;
+
+        if(user.equals("driver")){
+            username = ConfigurationReader.get("driver_username");
+            password = ConfigurationReader.get("driver_password");
+        }else if(user.equals("sales manager")){
+            username = ConfigurationReader.get("sales_manager_username");
+            password = ConfigurationReader.get("sales_manager_password");
+        }else if(user.equals("store manager")){
+            username = ConfigurationReader.get("store_manager_username");
+            password = ConfigurationReader.get("store_manager_password");
+        }
+
+        LoginPage loginPage = new LoginPage();
+        loginPage.login(username,password);
+
+    }
+
+
 
 
 }
