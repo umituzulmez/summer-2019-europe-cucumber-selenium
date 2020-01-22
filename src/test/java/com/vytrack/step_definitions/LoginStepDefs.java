@@ -58,7 +58,8 @@ public class LoginStepDefs {
     }
 
     @Then("the title should contains {string}")
-    public void the_title_should_contains(String expectedTitle) {
+    public void the_title_should_contains(String expectedTitle) throws InterruptedException {
+        BrowserUtils.waitFor(2);
         System.out.println("expectedTitle = " + expectedTitle);
         Assert.assertTrue(Driver.get().getTitle().contains(expectedTitle));
     }

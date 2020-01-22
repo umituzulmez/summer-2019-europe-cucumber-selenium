@@ -2,6 +2,7 @@ package com.vytrack.step_definitions;
 
 import com.vytrack.pages.ContactsPage;
 import com.vytrack.pages.DashboardPage;
+import com.vytrack.utilities.BrowserUtils;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -36,8 +37,11 @@ public class NavigationMenuStepDefs {
     }
 
     @When("the user navigates {string} {string}")
-    public void the_user_navigates(String tab, String module) {
-        new DashboardPage().navigateToModule(tab,module);
+    public void the_user_navigates(String tab, String module) throws InterruptedException {
+        DashboardPage dashboardPage = new DashboardPage();
+        BrowserUtils.waitFor(3);
+
+        dashboardPage.navigateToModule(tab,module);
     }
 
     @Then("default page number should be {int}")
