@@ -24,6 +24,15 @@ Feature: Contacts Page
       | firstname | John        |
       | lastname  | Doe         |
 
+
+
+
+
+
+
+
+
+
   Scenario Outline: login as a given user
     Given the user is on the login page
     When the user logs in using following credential
