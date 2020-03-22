@@ -17,3 +17,5 @@ Feature:Navigation Menu
     And the user enter the sales manager information
     When the user goes to Activities, Calender Events
     Then the url should be expected Calender Events url
+
+    
